@@ -8,47 +8,51 @@
 # +----------------------------------------------------------------------------+
 # | Author.......: Vanessa Reteguín <vanessa@reteguin.com>
 # | First release: October 29th, 2026
-# | Last update..: October 30th, 2026
+# | Last update..: November 4th, 2026
 # | WhatIs.......: Celular Automaton - Class
 # +-----------------------------------------------------------------------------+
-from idlelib import rpc
 
 # ------------ Resources / Documentation involved -------------
+# Sólo cosas vistas en clase y mi linda mentecita
 
 # --------------------------- Code ----------------------------
-transition_functions = []
-for i in range(0, 8):
-    if i == 0:
-        a = 0
-    else:
-        a = 1
+rule = 254
+current_generation = f"0001000"
 
-    transition_functions.append([f"{i:03b}", a])
+rule_num = f"{rule:03b}"
+print(f"rule: {rule} = {rule_num}")
+
+transition_functions = {}
+for i in range(len(rule_num)):
+    transition_functions[f"{i:03b}"] = rule_num[-i]
 
 print(f"transition_functions {transition_functions}")
 
-# rule = 254
-# rule = 8
+print(f"current_generation: {current_generation}\n")
 
-
-rule = 'abcde'
-print(f"rule: {rule}")
-
-next_generation = f"{rule}"
-
-"""
 for i in range(0, 6):
-    print(f"transition_functions[i][0][1]: {transition_functions[i][0][1]}")
-    for x in next_generation:
-        print(x)
+    print(f"------------ {i+1} ------------")
+    print(current_generation)
+    next_generation = [""] * len(current_generation)
 
-    print(f"---- {i}")
-"""
+    for x in range(len(current_generation)):
+        previous = current_generation[int(x)-1]
+        current = current_generation[int(x)]
 
+        if len(current_generation) <= int(x)+1:
+            next = current_generation[len(current_generation) - (int(x)+1)]
+        else:
+            next = current_generation[int(x) + 1]
 
-# print(f"transition_functions[i][0][1]: {transition_functions[i][0][1]}")
-# for x in range(len(next_generation)):
-x = 0
-print(f"previous: {next_generation[int(x):-1]}")
-print(f"current: {next_generation[int(x)]}")
-print(f"next: {next_generation[int(x):1]}")
+        transition = f"{previous}{current}{next}"
+        try:
+            new_element = transition_functions[transition]
+            print(f"transition: {transition} => transition function: {new_element}")
+        except KeyError:
+            # print(f"No transition for {transition}")
+            new_element = current_generation[int(x)]
+
+        next_generation[x] = new_element
+
+    next_generation = "".join(next_generation)
+    current_generation = next_generation
