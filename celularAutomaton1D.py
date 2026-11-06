@@ -7,9 +7,9 @@
 # | www.carduitech.com/license/
 # +----------------------------------------------------------------------------+
 # | Author.......: Vanessa Reteguín <vanessa@reteguin.com>
-# | First release: October 29th, 2026
-# | Last update..: November 4th, 2026
-# | WhatIs.......: Celular Automaton - Class
+# | First release: November 4th, 2026
+# | Last update..: November 5th, 2026
+# | WhatIs.......: Celular Automaton 1D - Class
 # +-----------------------------------------------------------------------------+
 
 # ------------ Resources / Documentation involved -------------
